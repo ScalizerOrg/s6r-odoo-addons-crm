@@ -2,6 +2,15 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0.html).
 
 from odoo import api, models, fields
+from odoo.fields import Command
+
+
+def get_command(values):
+    if isinstance(values[0], int):
+        cmd = Command(values[0]).name
+    else:
+        cmd = values[0].name
+    return cmd
 
 
 class CrmLead(models.Model):
@@ -16,11 +25,11 @@ class CrmLead(models.Model):
             if vals.get('tag_ids') or vals.get('partner_id'):
                 val_tag_ids = vals.get('tag_ids', [])
                 for val_tag_id in val_tag_ids:
-                    if val_tag_id[0] == 3:
+                    if get_command(val_tag_id) == 'UNLINK':
                         remove_ids.append(val_tag_id[1])
-                    elif val_tag_id[0] == 5:
+                    elif get_command(val_tag_id) == 'CLEAR':
                         remove_ids.extend(rec.tag_ids.ids)
-                    elif val_tag_id[0] == 6:
+                    elif get_command(val_tag_id) == 'SET':
                         remove_ids.extend([tag_id for tag_id in rec.tag_ids.ids if tag_id not in val_tag_id[2]])
                     if remove_ids:
                         rec.remove_partner_tags(remove_ids)

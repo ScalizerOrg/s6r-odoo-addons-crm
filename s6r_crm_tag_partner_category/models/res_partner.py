@@ -2,6 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0.html).
 
 from odoo import api, models, fields
+from .crm_lead import get_command
 
 
 class ResPartner(models.Model):
@@ -16,22 +17,22 @@ class ResPartner(models.Model):
             if vals.get('category_id'):
                 val_tag_ids = vals.get('category_id', [])
                 for val_tag_id in val_tag_ids:
-                    if val_tag_id[0] == 3:
+                    if get_command(val_tag_id) == 'UNLINK':
                         remove_ids.append(val_tag_id[1])
-                    elif val_tag_id[0] == 5:
+                    elif get_command(val_tag_id) == 'CLEAR':
                         remove_ids.extend(rec.category_id.ids)
-                    elif val_tag_id[0] == 6:
+                    elif get_command(val_tag_id) == 'SET':
                         remove_ids.extend([tag_id for tag_id in rec.category_id.ids if tag_id not in val_tag_id[2]])
                     if remove_ids:
-                        rec.remove_leads_tags(remove_ids)
+                        rec.sudo().remove_leads_tags(remove_ids)
             res = super(ResPartner, rec).write(vals)
-            rec.update_leads_tags(remove_ids)
+            rec.sudo().update_leads_tags(remove_ids)
         return res
 
     @api.model_create_multi
     def create(self, vals_list):
         res = super(ResPartner, self).create(vals_list)
-        res.update_leads_tags()
+        res.sudo().update_leads_tags()
         return res
 
     def update_leads_tags(self, removed_ids=None):
