@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_category_form_inherit" model="ir.ui.view">
+        <field name="name">Contact Tags Synchronisation</field>
+        <field name="model">res.partner.category</field>
+        <field name="inherit_id" ref="base.view_partner_category_form"/>
+        <field name="arch" type="xml">
+            <field name="active" position="after">
+                <field name="synchronize_with_lead"/>
+            </field>
+        </field>
+    </record>
+    <record id="view_partner_category_list_inherit" model="ir.ui.view">
+        <field name="name">Contact Tags Synchronisation</field>
+        <field name="model">res.partner.category</field>
+        <field name="inherit_id" ref="base.view_partner_category_list"/>
+        <field name="arch" type="xml">
+            <field name="display_name" position="after">
+                <field name="synchronize_with_lead"/>
+            </field>
+        </field>
+    </record>
+</odoo>
