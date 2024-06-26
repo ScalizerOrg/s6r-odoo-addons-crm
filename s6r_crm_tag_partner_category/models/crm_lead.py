@@ -43,7 +43,9 @@ class CrmLead(models.Model):
             res.partner_id.update_leads_tags()
         return res
 
-    def update_partner_tags(self, removed_ids=[]):
+    def update_partner_tags(self, removed_ids=None):
+        if not removed_ids:
+            removed_ids = []
         for lead in self:
             if not lead.partner_id:
                 continue
@@ -66,4 +68,3 @@ class CrmLead(models.Model):
                 if partner_category_id in self.partner_id.category_id:
                     values = {'category_id': [(3, partner_category_id.id)]}
                     self.partner_id.with_context(synchronize_partner_tag=True).write(values)
-

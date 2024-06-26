@@ -34,7 +34,9 @@ class ResPartner(models.Model):
         res.update_leads_tags()
         return res
 
-    def update_leads_tags(self, removed_ids=[]):
+    def update_leads_tags(self, removed_ids=None):
+        if not removed_ids:
+            removed_ids = []
         for partner in self:
             lead_ids = self.env['crm.lead'].search([('partner_id', '=', partner.id)])
             if not lead_ids:
