@@ -26,13 +26,15 @@ class ResPartner(models.Model):
                     if remove_ids:
                         rec.sudo().remove_leads_tags(remove_ids)
             res = super(ResPartner, rec).write(vals)
-            rec.sudo().update_leads_tags(remove_ids)
+            if rec.category_id or remove_ids:
+                rec.sudo().update_leads_tags(remove_ids)
         return res
 
     @api.model_create_multi
     def create(self, vals_list):
         res = super(ResPartner, self).create(vals_list)
-        res.sudo().update_leads_tags()
+        if res.category_id:
+            res.sudo().update_leads_tags()
         return res
 
     def update_leads_tags(self, removed_ids=None):

@@ -48,7 +48,7 @@ class CrmLead(models.Model):
     def create(self, vals_list):
         res = super(CrmLead, self).create(vals_list)
         res.update_partner_tags()
-        if res.partner_id:
+        if res.partner_id and res.partner_id.category_id:
             res.partner_id.update_leads_tags()
         return res
 
