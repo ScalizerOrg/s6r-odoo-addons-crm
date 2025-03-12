@@ -40,6 +40,8 @@ class CrmLead(models.Model):
                     rec.update_partner_tags(remove_ids)
                     rec.partner_id.update_leads_tags()
             if vals.get('partner_id'):
+                if rec.partner_id:
+                    rec.update_partner_tags(remove_ids)
                 if rec.partner_id and rec.partner_id.category_id:
                     rec.partner_id.update_leads_tags()
         return res
