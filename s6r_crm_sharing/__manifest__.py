@@ -2,8 +2,9 @@
     'name': 'S6R CRM Sharing',
     'version': '16.0.1.0.0',
     'author': 'Scalizer',
-    'depends': ['project', 'crm', 'portal'],
+    'depends': ['project', 'website_crm_partner_assign'],
     'data': [
+        'security/ir.model.access.csv',
         'views/crm_sharing_views.xml',
         'templates/crm_sharing_templates.xml',
     ],

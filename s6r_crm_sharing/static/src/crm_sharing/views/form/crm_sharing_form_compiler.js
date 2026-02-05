@@ -8,7 +8,7 @@ import { patch } from "@web/core/utils/patch";
 import { FormCompiler } from "@web/views/form/form_compiler";
 
 /**
- * Compiler the portal chatter in project sharing.
+ * Compiler the portal chatter in crm sharing.
  *
  * @param {HTMLElement} node
  * @param {Object} params
@@ -17,12 +17,23 @@ import { FormCompiler } from "@web/views/form/form_compiler";
 function compileChatter(node, params) {
     const chatterContainerXml = createElement('ChatterContainer');
     const parentURLQuery = new URLSearchParams(window.parent.location.search);
-    setAttributes(chatterContainerXml, {
-        token: `'${parentURLQuery.get('access_token')}'` || '',
+    const access_token = parentURLQuery.get('access_token');
+    const attributes = {
+        token: access_token ? `'${access_token}'` : "''",
         resModel: params.resModel,
         resId: params.resId,
-        crmSharingId: params.crmSharingId,
-    });
+    };
+    if (params.crmSharingId) {
+        attributes.crmSharingId = params.crmSharingId;
+    } else {
+        attributes.crmSharingId = "undefined";
+    }
+    if (params.projectSharingId) {
+        attributes.projectSharingId = params.projectSharingId;
+    } else {
+        attributes.projectSharingId = "undefined";
+    }
+    setAttributes(chatterContainerXml, attributes);
     const chatterContainerHookXml = createElement('div');
     chatterContainerHookXml.classList.add('o_FormRenderer_chatterContainer');
     append(chatterContainerHookXml, chatterContainerXml);
@@ -65,20 +76,22 @@ export class CrmSharingExtensionChatterCompiler extends ViewCompiler {
         return compileChatter(node, {
             resId: 'model.root.resId or undefined',
             resModel: 'model.root.resModel',
-            crmSharingId: 'model.root.context.active_id_chatter or 0',
+            projectSharingId: 'model.root.context.active_id_chatter',
+            crmSharingId: 'model.root.context.active_id_chatter',
         });
     }
 }
 
-// registry.category("form_compilers").add("portal_chatter_compiler", {
-//     selector: "div.oe_chatter",
-//     fn: (node) =>
-//         compileChatter(node, {
-//             resId: "props.record.resId or undefined",
-//             resModel: "props.record.resModel",
-//             projectSharingId: "props.record.context.active_id_chatter",
-//         }),
-// });
+registry.category("form_compilers").add("portal_chatter_compiler", {
+    selector: "div.oe_chatter",
+    fn: (node) =>
+        compileChatter(node, {
+            resId: "props.record.resId or undefined",
+            resModel: "props.record.resModel",
+            projectSharingId: "props.record.context.active_id_chatter",
+            crmSharingId: "props.record.context.active_id_chatter",
+        }),
+}, { force: true });
 
 patch(FormCompiler.prototype, 'crm_sharing_chatter', {
     compile(node, params) {
@@ -95,7 +108,6 @@ patch(FormCompiler.prototype, 'crm_sharing_chatter', {
         if (!parentXml) {
             return res; // miss-config: a sheet-bg is required for the rest
         }
-        // after sheet bg (standard position, below form)
         setAttributes(chatterContainerHookXml, {
             't-if': `uiService.size < ${SIZES.XXL}`,
         });

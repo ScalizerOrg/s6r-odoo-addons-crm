@@ -4,17 +4,21 @@ import { ChatterContainer } from "@project/project_sharing/components/chatter/ch
 import { CrmChatterComposer as ChatterComposer } from "./chatter_composer";
 
 export class CrmChatterContainer extends ChatterContainer {
+    get crmSharingId() {
+        return this.props.crmSharingId || this.props.projectSharingId;
+    }
+
     get composerProps() {
         return {
             ...super.composerProps,
-            crmSharingId: this.props.crmSharingId,
+            crmSharingId: this.crmSharingId,
         };
     }
 
     messagesParams(props) {
         return {
             ...super.messagesParams(props),
-            crm_sharing_id: props.crmSharingId,
+            crm_sharing_id: this.crmSharingId,
         };
     }
 }
@@ -26,5 +30,6 @@ CrmChatterContainer.components = {
 
 CrmChatterContainer.props = {
     ...ChatterContainer.props,
-    crmSharingId: Number,
+    crmSharingId: { type: Number, optional: true },
+    projectSharingId: { type: Number, optional: true },
 };

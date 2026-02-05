@@ -13,5 +13,6 @@ export class CrmChatterComposer extends ChatterComposer {
 
 CrmChatterComposer.props = {
     ...ChatterComposer.props,
-    crmSharingId: Number,
+    crmSharingId: { type: Number, optional: true },
+    projectSharingId: { type: Number, optional: true },
 };

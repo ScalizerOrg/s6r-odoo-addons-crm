@@ -13,6 +13,7 @@ export class CrmSharingWebClient extends ProjectSharingWebClient {
                 additionalContext: {
                     active_id: active_id,
                     active_model: active_model,
+                    active_id_chatter: active_id,
                 }
             }
         );

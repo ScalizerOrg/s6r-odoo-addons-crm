@@ -5,7 +5,7 @@
         <field name="model">crm.lead</field>
         <field name="priority">999</field>
         <field name="arch" type="xml">
-            <kanban class="o_kanban_mobile" create="false" js_class="crm_sharing_kanban">
+            <kanban class="o_kanban_mobile" js_class="crm_sharing_kanban" on_create="quick_create" quick_create_view="s6r_crm_sharing.crm_lead_view_kanban_quick_create" records_draggable="0" groups_draggable="0">
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="stage_id"/>
@@ -43,7 +43,7 @@
         <field name="model">crm.lead</field>
         <field name="priority">999</field>
         <field name="arch" type="xml">
-            <tree create="false" js_class="crm_sharing_list">
+            <tree js_class="crm_sharing_list">
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="contact_name"/>
@@ -54,6 +54,23 @@
         </field>
     </record>
 
+    <record id="crm_lead_view_kanban_quick_create" model="ir.ui.view">
+        <field name="name">crm.lead.form.quick_create</field>
+        <field name="model">crm.lead</field>
+        <field name="priority">999</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="company_id" invisible="1"/>
+                    <field name="user_company_ids" invisible="1"/>
+                    <field name="name" string="Opportunity Title" placeholder="e.g. Product Launch"/>
+                    <field name="partner_id" placeholder="Customer"/>
+                    <field name="expected_revenue" widget="monetary"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
     <record id="crm_lead_view_form_sharing" model="ir.ui.view">
         <field name="name">crm.lead.form.sharing</field>
         <field name="model">crm.lead</field>
@@ -61,7 +78,7 @@
         <field name="arch" type="xml">
             <form js_class="crm_sharing_form">
                 <header>
-                    <field name="stage_id" widget="statusbar" options="{'clickable': '1'}"/>
+                    <field name="stage_id" widget="statusbar" options="{'clickable': '0'}"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -71,13 +88,13 @@
                         <group>
                             <field name="company_id" invisible="1"/>
                             <field name="user_company_ids" invisible="1"/>
+                            <field name="team_id" invisible="1"/>
                             <field name="partner_id"/>
                             <field name="email_from"/>
                             <field name="phone"/>
                         </group>
                         <group>
-                            <field name="user_id" widget="many2one_avatar_user"/>
-                            <field name="team_id"/>
+                            <field name="user_id" readonly="1"/>
                         </group>
                     </group>
                     <notebook>
@@ -97,7 +114,10 @@
         <field name="res_model">crm.lead</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="domain">[('type', '=', 'opportunity')]</field>
-        <field name="context">{'default_type': 'opportunity'}</field>
+        <field name="context">{
+            'default_type': 'opportunity',
+            'group_by': 'stage_id',
+        }</field>
         <field name="view_ids" eval="[(5, 0, 0),
             (0, 0, {'view_mode': 'kanban', 'view_id': ref('crm_lead_view_kanban_sharing')}),
             (0, 0, {'view_mode': 'tree', 'view_id': ref('crm_lead_view_tree_sharing')}),
