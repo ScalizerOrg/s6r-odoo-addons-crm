@@ -50,6 +50,8 @@ SELF_WRITABLE_FIELDS = {
     'probability',
     'tag_ids',
     'user_id',
+    'can_edit_fields',
+    'can_edit_advenir',
 }
 
 class CrmLead(models.Model):
@@ -90,9 +92,7 @@ class CrmLead(models.Model):
             self.check_access_rights('create')
             for vals in vals_list:
                 self._ensure_fields_write(vals)
-        # We use sudo() here because the portal user might not have rights to all fields
-        # or related records required during create (like project sharing does)
-        # But we must check access rule after creation.
+
         leads = super(CrmLead, self.sudo() if is_portal_user else self).create(vals_list)
         if is_portal_user:
             leads.with_user(self.env.user).check_access_rule('create')

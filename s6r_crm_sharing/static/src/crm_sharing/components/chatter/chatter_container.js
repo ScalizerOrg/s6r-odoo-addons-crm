@@ -33,3 +33,8 @@ CrmChatterContainer.props = {
     crmSharingId: { type: Number, optional: true },
     projectSharingId: { type: Number, optional: true },
 };
+
+CrmChatterContainer.defaultProps = {
+    ...ChatterContainer.defaultProps,
+    projectSharingId: 0,
+};

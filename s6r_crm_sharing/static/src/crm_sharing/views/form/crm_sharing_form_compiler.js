@@ -26,12 +26,12 @@ function compileChatter(node, params) {
     if (params.crmSharingId) {
         attributes.crmSharingId = params.crmSharingId;
     } else {
-        attributes.crmSharingId = "undefined";
+        attributes.crmSharingId = "0";
     }
     if (params.projectSharingId) {
         attributes.projectSharingId = params.projectSharingId;
     } else {
-        attributes.projectSharingId = "undefined";
+        attributes.projectSharingId = "0";
     }
     setAttributes(chatterContainerXml, attributes);
     const chatterContainerHookXml = createElement('div');

@@ -16,3 +16,8 @@ CrmChatterComposer.props = {
     crmSharingId: { type: Number, optional: true },
     projectSharingId: { type: Number, optional: true },
 };
+
+CrmChatterComposer.defaultProps = {
+    ...ChatterComposer.defaultProps,
+    projectSharingId: 0,
+};
