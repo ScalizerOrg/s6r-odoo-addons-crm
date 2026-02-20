@@ -50,24 +50,11 @@ SELF_WRITABLE_FIELDS = {
     'probability',
     'tag_ids',
     'user_id',
-    'can_edit_fields',
-    'can_edit_advenir',
+    'team_id',
 }
 
 class CrmLead(models.Model):
     _inherit = 'crm.lead'
-
-    access_token = fields.Char('Security Token', copy=False)
-
-    _mail_post_token_field = 'access_token'
-
-    def _portal_ensure_token(self):
-        """ Get the current record access token """
-        if not self.access_token:
-            # we use a `sudo` here because the user may not have the rights to write on the record
-            # but we need a token for the portal chatter to work
-            self.sudo().write({'access_token': str(uuid.uuid4())})
-        return self.access_token
 
     @property
     def SELF_READABLE_FIELDS(self):
@@ -92,12 +79,7 @@ class CrmLead(models.Model):
             self.check_access_rights('create')
             for vals in vals_list:
                 self._ensure_fields_write(vals)
-
         leads = super(CrmLead, self.sudo() if is_portal_user else self).create(vals_list)
-        if is_portal_user:
-            leads.with_user(self.env.user).check_access_rule('create')
-            for lead in leads:
-                lead._portal_ensure_token()
         return leads
 
     def write(self, vals):
