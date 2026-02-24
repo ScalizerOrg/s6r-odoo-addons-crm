@@ -85,8 +85,6 @@ class CrmLead(models.Model):
     def write(self, vals):
         if self.env.user.has_group('base.group_portal') and not self.env.su:
             self._ensure_fields_write(vals)
-            self.check_access_rights('write')
-            self.check_access_rule('write')
         return super(CrmLead, self).write(vals)
 
     def _ensure_fields_write(self, vals):
