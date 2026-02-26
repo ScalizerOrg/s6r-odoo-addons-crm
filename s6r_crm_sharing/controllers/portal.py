@@ -42,3 +42,10 @@ class CrmSharingPortal(WebsiteAccount):
     @http.route(['/my/opportunities', '/my/opportunities/page/<int:page>'], type='http', auth="user", website=True)
     def portal_my_opportunities(self, page=1, date_begin=None, date_end=None, sortby=None, filterby=None, **kw):
         return request.render("s6r_crm_sharing.crm_sharing_portal", {'page_name': 'opportunity'})
+
+    @http.route("/my/opportunities/crm_sharing", type="http", auth="user", methods=['GET'])
+    def render_crm_backend_view(self):
+        return request.render(
+            's6r_crm_sharing.crm_sharing_embed',
+            {'session_info': self._prepare_crm_sharing_session_info()},
+        )
