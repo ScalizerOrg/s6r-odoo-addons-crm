@@ -10,7 +10,7 @@
     ],
     'assets': {
         'project.webclient': [
-            's6r_crm_sharing/static/src/crm_sharing/**/*',
+            's6r_crm_sharing/static/src/**/**/*',
         ],
     },
     'installable': True,

@@ -1,0 +1,13 @@
+.o_crm_sharing_container {
+    & > main {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+    #wrapwrap.o_crm_sharing_container {
+        overflow: hidden;
+    }
+    iframe {
+        min-height: 0;
+    }
+}
