@@ -10,30 +10,21 @@
                 <field name="partner_id"/>
                 <field name="stage_id"/>
                 <field name="expected_revenue"/>
-                <templates>
-                    <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_global_click">
-                            <div class="row">
-                                <div class="col-12">
-                                    <strong><field name="name"/></strong>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-8">
-                                    <field name="partner_id"/>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <field name="expected_revenue" widget="monetary"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <field name="stage_id" invisible="1"/>
-                                </div>
-                            </div>
+                <t t-name="card">
+                    <div class="row">
+                        <div class="col-12">
+                            <strong><field name="name"/></strong>
                         </div>
-                    </t>
-                </templates>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <field name="partner_id"/>
+                        </div>
+                        <div class="col-4 text-end">
+                            <field name="expected_revenue" widget="monetary"/>
+                        </div>
+                    </div>
+                </t>
             </kanban>
         </field>
     </record>
@@ -43,14 +34,14 @@
         <field name="model">crm.lead</field>
         <field name="priority">999</field>
         <field name="arch" type="xml">
-            <tree js_class="crm_sharing_list">
+            <list js_class="crm_sharing_list">
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="contact_name"/>
                 <field name="email_from"/>
                 <field name="phone"/>
                 <field name="stage_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -103,8 +94,7 @@
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
@@ -112,10 +102,10 @@
     <record id="crm_lead_action_sharing" model="ir.actions.act_window">
         <field name="name">Opportunities</field>
         <field name="res_model">crm.lead</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field name="view_ids" eval="[(5, 0, 0),
             (0, 0, {'view_mode': 'kanban', 'view_id': ref('crm_lead_view_kanban_sharing')}),
-            (0, 0, {'view_mode': 'tree', 'view_id': ref('crm_lead_view_tree_sharing')}),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('crm_lead_view_tree_sharing')}),
             (0, 0, {'view_mode': 'form', 'view_id': ref('crm_lead_view_form_sharing')})]"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

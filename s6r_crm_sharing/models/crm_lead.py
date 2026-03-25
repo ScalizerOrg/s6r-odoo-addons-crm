@@ -76,7 +76,7 @@ class CrmLead(models.Model):
     def create(self, vals_list):
         is_portal_user = self.env.user.has_group('base.group_portal')
         if is_portal_user:
-            self.check_access_rights('create')
+            self.check_access('create')
             for vals in vals_list:
                 self._ensure_fields_write(vals)
         leads = super(CrmLead, self.sudo() if is_portal_user else self).create(vals_list)

@@ -1,7 +1,8 @@
 import datetime
 from collections import OrderedDict
 
-from odoo import fields, http, conf
+from odoo import fields, http
+from odoo.tools import config  # [MIG]: odoo.conf module removed in v19, server_wide_modules now via config
 from odoo.http import request
 from odoo.addons.website_crm_partner_assign.controllers.main import WebsiteAccount
 
@@ -11,10 +12,10 @@ class CrmSharingPortal(WebsiteAccount):
 
     def _prepare_crm_sharing_session_info(self):
         session_info = request.env['ir.http'].session_info()
-        user_context = dict(request.env.context) if request.session.uid else {}
-        mods = conf.server_wide_modules or []
+        user_context = request.env.context
+        mods = config['server_wide_modules'] or []
         lang = user_context.get("lang")
-        translation_hash = request.env['ir.http'].get_web_translations_hash(mods, lang)
+        translation_hash = request.env['ir.http']._get_web_translations_hash(mods, lang)
         cache_hashes = {
             "translations": translation_hash,
         }
@@ -35,7 +36,7 @@ class CrmSharingPortal(WebsiteAccount):
                     },
                 },
             },
-            currencies=request.env['ir.http'].get_currencies(),
+            currencies=request.env['res.currency'].get_all_currencies(),
         )
         return session_info
 

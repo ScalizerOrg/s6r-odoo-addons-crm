@@ -1,6 +1,6 @@
 {
     'name': 'S6R CRM Sharing',
-    'version': '16.0.1.0.0',
+    'version': '19.0.1.0.0',
     'author': 'Scalizer',
     'depends': ['project', 'website_crm_partner_assign'],
     'data': [
