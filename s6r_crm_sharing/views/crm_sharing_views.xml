@@ -52,8 +52,6 @@
         <field name="arch" type="xml">
             <form>
                 <group>
-                    <field name="company_id" invisible="1"/>
-                    <field name="user_company_ids" invisible="1"/>
                     <field name="name" string="Opportunity Title" placeholder="e.g. Product Launch"/>
                     <field name="partner_id" placeholder="Customer"/>
                     <field name="expected_revenue" widget="monetary"/>
@@ -77,9 +75,6 @@
                     </div>
                     <group>
                         <group>
-                            <field name="company_id" invisible="1"/>
-                            <field name="user_company_ids" invisible="1"/>
-                            <field name="team_id" invisible="1"/>
                             <field name="partner_id"/>
                             <field name="email_from"/>
                             <field name="phone"/>
