@@ -1,6 +1,6 @@
 {
     'name': 'S6R CRM Sharing',
-    'version': '19.0.1.0.2',
+    'version': '19.0.1.0.3',
     'author': 'Scalizer',
     'depends': ['project', 'website_crm_partner_assign'],
     'data': [
@@ -11,6 +11,9 @@
     'assets': {
         'project.webclient': [
             's6r_crm_sharing/static/src/**/**/*',
+        ],
+        'web.assets_frontend': [
+            's6r_crm_sharing/static/src/scss/crm_sharing_frontend.scss',
         ],
     },
     'installable': True,
