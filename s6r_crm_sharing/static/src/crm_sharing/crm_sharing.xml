@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="s6r_crm_sharing.CrmSharingWebClient" t-inherit="project.ProjectSharingWebClient" t-inherit-mode="extension" owl="1">
+    </t>
+
+</templates>
