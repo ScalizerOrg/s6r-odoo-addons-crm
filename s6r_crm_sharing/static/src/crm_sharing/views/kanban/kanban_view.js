@@ -1,4 +1,5 @@
 /** @odoo-module */
+/* eslint-disable sort-imports */
 
 import { ProjectSharingTaskKanbanDynamicGroupList } from "@project/project_sharing/views/kanban/kanban_view";
 import { registry } from "@web/core/registry";

@@ -1,4 +1,5 @@
 /** @odoo-module */
+/* eslint-disable sort-imports */
 
 import { append, createElement, setAttributes } from "@web/core/utils/xml";
 import { ViewCompiler, getModifier } from "@web/views/view_compiler";
