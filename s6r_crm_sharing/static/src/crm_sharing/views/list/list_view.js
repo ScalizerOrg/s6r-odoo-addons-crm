@@ -1,8 +1,8 @@
 /** @odoo-module */
 
-import { registry } from "@web/core/registry";
-import { listView } from "@web/views/list/list_view";
 import { CrmSharingExtensionListRenderer } from "./list_renderer";
+import { listView } from "@web/views/list/list_view";
+import { registry } from "@web/core/registry";
 
 export const crmSharingExtensionListView = {
     ...listView,

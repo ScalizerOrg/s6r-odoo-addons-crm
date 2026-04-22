@@ -1,9 +1,9 @@
 /** @odoo-module */
 
+import { CrmChatterContainer as ChatterContainer } from '../../components/chatter/chatter_container';
+import { CrmSharingExtensionChatterCompiler } from './crm_sharing_form_compiler';
 import { ProjectSharingFormController } from "@project/project_sharing/views/form/project_sharing_form_controller";
 import { useViewCompiler } from '@web/views/view_compiler';
-import { CrmSharingExtensionChatterCompiler } from './crm_sharing_form_compiler';
-import { CrmChatterContainer as ChatterContainer } from '../../components/chatter/chatter_container';
 
 export class CrmSharingExtensionFormController extends ProjectSharingFormController {
     setup() {

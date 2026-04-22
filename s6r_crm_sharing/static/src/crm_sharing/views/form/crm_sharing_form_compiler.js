@@ -1,9 +1,9 @@
 /** @odoo-module */
 
 import { append, createElement, setAttributes } from "@web/core/utils/xml";
+import { ViewCompiler, getModifier } from "@web/views/view_compiler";
 import { registry } from "@web/core/registry";
 import { SIZES } from "@web/core/ui/ui_service";
-import { getModifier, ViewCompiler } from "@web/views/view_compiler";
 import { patch } from "@web/core/utils/patch";
 import { FormCompiler } from "@web/views/form/form_compiler";
 
@@ -12,7 +12,7 @@ import { FormCompiler } from "@web/views/form/form_compiler";
  *
  * @param {HTMLElement} node
  * @param {Object} params
- * @returns
+ * @returns {void}
  */
 function compileChatter(node, params) {
     const chatterContainerXml = createElement('ChatterContainer');
@@ -98,15 +98,18 @@ patch(FormCompiler.prototype, 'crm_sharing_chatter', {
         const res = this._super(node, params);
         const chatterContainerHookXml = res.querySelector('.o_FormRenderer_chatterContainer');
         if (!chatterContainerHookXml) {
-            return res; // no chatter, keep the result as it is
+            // No chatter, keep the result as it is
+            return res;
         }
         if (chatterContainerHookXml.parentNode.classList.contains('o_form_sheet')) {
-            return res; // if chatter is inside sheet, keep it there
+            // If chatter is inside sheet, keep it there
+            return res;
         }
         const formSheetBgXml = res.querySelector('.o_form_sheet_bg');
         const parentXml = formSheetBgXml && formSheetBgXml.parentNode;
         if (!parentXml) {
-            return res; // miss-config: a sheet-bg is required for the rest
+            // Miss-config: a sheet-bg is required for the rest
+            return res;
         }
         setAttributes(chatterContainerHookXml, {
             't-if': `uiService.size < ${SIZES.XXL}`,

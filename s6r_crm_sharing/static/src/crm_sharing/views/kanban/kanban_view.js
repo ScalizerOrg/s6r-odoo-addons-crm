@@ -1,9 +1,9 @@
 /** @odoo-module */
 
-import { registry } from "@web/core/registry";
-import { kanbanView } from "@web/views/kanban/kanban_view";
 import { ProjectSharingTaskKanbanDynamicGroupList } from "@project/project_sharing/views/kanban/kanban_view";
+import { registry } from "@web/core/registry";
 import { KanbanModel } from "@web/views/kanban/kanban_model";
+import { kanbanView } from "@web/views/kanban/kanban_view";
 
 export class CrmSharingExtensionTaskKanbanDynamicGroupList extends ProjectSharingTaskKanbanDynamicGroupList {
     get context() {

@@ -1,7 +1,7 @@
 /** @odoo-module */
 
-import { ChatterContainer } from "@project/project_sharing/components/chatter/chatter_container";
 import { CrmChatterComposer as ChatterComposer } from "./chatter_composer";
+import { ChatterContainer } from "@project/project_sharing/components/chatter/chatter_container";
 
 export class CrmChatterContainer extends ChatterContainer {
     get crmSharingId() {
