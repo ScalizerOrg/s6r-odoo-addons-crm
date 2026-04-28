@@ -6,17 +6,21 @@ patch(ProjectSharingWebClient.prototype, {
     async loadRouterState() {
         const { action_name, active_id, active_model, open_task_action } = session;
         if (action_name && action_name === 's6r_crm_sharing.crm_lead_action_sharing') {
-            await this.actionService.doAction(
-                action_name,
-                {
-                    clearBreadcrumbs: true,
-                    additionalContext: {
-                        active_id: active_id,
-                        active_model: active_model,
-                        active_id_chatter: active_id,
+            // Try URL-based state first (restores specific lead form on page reload).
+            const stateLoaded = await this.actionService.loadState();
+            if (!stateLoaded) {
+                await this.actionService.doAction(
+                    action_name,
+                    {
+                        clearBreadcrumbs: true,
+                        additionalContext: {
+                            active_id: active_id,
+                            active_model: active_model,
+                            active_id_chatter: active_id,
+                        }
                     }
-                }
-            );
+                );
+            }
             if (open_task_action) {
                 await this.actionService.doAction(open_task_action);
             }

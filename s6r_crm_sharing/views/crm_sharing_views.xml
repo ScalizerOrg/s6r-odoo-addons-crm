@@ -97,6 +97,7 @@
     <record id="crm_lead_action_sharing" model="ir.actions.act_window">
         <field name="name">Opportunities</field>
         <field name="res_model">crm.lead</field>
+        <field name="path">crm_sharing</field>
         <field name="view_mode">kanban,list,form</field>
         <field name="view_ids" eval="[(5, 0, 0),
             (0, 0, {'view_mode': 'kanban', 'view_id': ref('crm_lead_view_kanban_sharing')}),
