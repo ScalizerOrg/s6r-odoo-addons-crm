@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates xml:space="preserve">
 
-    <t t-name="project.ProjectSharingWebClient" t-inherit="project.ProjectSharingWebClient" t-inherit-mode="extension">
-    </t>
+<!--    <t t-name="project.ProjectSharingWebClient" t-inherit="project.ProjectSharingWebClient" t-inherit-mode="extension">-->
+<!--    </t>-->
 
     <t t-name="project.ProjectSharingControlPanelNavigationButton" t-inherit="project.ProjectSharingControlPanelNavigationButton" t-inherit-mode="extension">
         <xpath expr="//a" position="replace">
-            <a class="btn btn-link"
-               t-att-href="window.location.pathname.includes('/my/opportunities') ? '/my' : '/my/projects'"
-               t-att-title="window.location.pathname.includes('/my/opportunities') ? 'Go back to Portal' : 'Go back to My Projects'">
+            <a class="btn btn-link" href="/my" title="Go back to Portal">
                 <i class="fa fa-arrow-left"/>
             </a>
         </xpath>

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0+e\n"
+"Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-05 18:50+0000\n"
-"PO-Revision-Date: 2026-02-05 18:50+0000\n"
+"POT-Creation-Date: 2026-05-12 15:32+0000\n"
+"PO-Revision-Date: 2026-05-12 15:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,20 +16,9 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: s6r_crm_sharing
-#. odoo-python
-#: code:addons/s6r-odoo-addons-crm/s6r_crm_sharing/controllers/portal.py:0
-#: code:addons/s6r_crm_sharing/controllers/portal.py:0
-#, python-format
-msgid "Active"
-msgstr "Actif"
-
-#. module: s6r_crm_sharing
-#. odoo-python
-#: code:addons/s6r-odoo-addons-crm/s6r_crm_sharing/controllers/portal.py:0
-#: code:addons/s6r_crm_sharing/controllers/portal.py:0
-#, python-format
-msgid "Contact Name"
-msgstr "Nom du contact"
+#: model:ir.model,website_form_label:s6r_crm_sharing.model_crm_lead
+msgid "Create an Opportunity"
+msgstr "Créer une opportunité"
 
 #. module: s6r_crm_sharing
 #: model_terms:ir.ui.view,arch_db:s6r_crm_sharing.crm_lead_view_kanban_quick_create
@@ -37,41 +26,19 @@ msgid "Customer"
 msgstr "Client"
 
 #. module: s6r_crm_sharing
-#. odoo-python
-#: code:addons/s6r-odoo-addons-crm/s6r_crm_sharing/controllers/portal.py:0
-#: code:addons/s6r_crm_sharing/controllers/portal.py:0
-#, python-format
-msgid "Expected Revenue"
-msgstr "Revenu espéré"
+#: model:ir.model.fields,field_description:s6r_crm_sharing.field_crm_lead__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
+
+#. module: s6r_crm_sharing
+#: model:ir.model.fields,field_description:s6r_crm_sharing.field_crm_lead__id
+msgid "ID"
+msgstr ""
 
 #. module: s6r_crm_sharing
 #: model:ir.model,name:s6r_crm_sharing.model_crm_lead
-msgid "Lead/Opportunity"
-msgstr "Piste/Opportunité"
-
-#. module: s6r_crm_sharing
-#. odoo-python
-#: code:addons/s6r-odoo-addons-crm/s6r_crm_sharing/controllers/portal.py:0
-#: code:addons/s6r_crm_sharing/controllers/portal.py:0
-#, python-format
-msgid "Lost"
-msgstr "Perdu"
-
-#. module: s6r_crm_sharing
-#. odoo-python
-#: code:addons/s6r-odoo-addons-crm/s6r_crm_sharing/controllers/portal.py:0
-#: code:addons/s6r_crm_sharing/controllers/portal.py:0
-#, python-format
-msgid "Name"
-msgstr "Nom"
-
-#. module: s6r_crm_sharing
-#. odoo-python
-#: code:addons/s6r-odoo-addons-crm/s6r_crm_sharing/controllers/portal.py:0
-#: code:addons/s6r_crm_sharing/controllers/portal.py:0
-#, python-format
-msgid "Newest"
-msgstr "Plus récent"
+msgid "Lead"
+msgstr "Piste/opportunité"
 
 #. module: s6r_crm_sharing
 #: model_terms:ir.actions.act_window,help:s6r_crm_sharing.crm_lead_action_sharing
@@ -96,62 +63,8 @@ msgstr "Titre de l'opportunité"
 
 #. module: s6r_crm_sharing
 #. odoo-python
-#: code:addons/s6r-odoo-addons-crm/s6r_crm_sharing/controllers/portal.py:0
-#: code:addons/s6r_crm_sharing/controllers/portal.py:0
-#, python-format
-msgid "Overdue Activities"
-msgstr "Activités en retard"
-
-#. module: s6r_crm_sharing
-#. odoo-python
-#: code:addons/s6r-odoo-addons-crm/s6r_crm_sharing/controllers/portal.py:0
-#: code:addons/s6r_crm_sharing/controllers/portal.py:0
-#, python-format
-msgid "Probability"
-msgstr "Probabilité"
-
-#. module: s6r_crm_sharing
-#: model:ir.model.fields,field_description:s6r_crm_sharing.field_crm_lead__access_token
-msgid "Security Token"
-msgstr "Jeton de sécurité"
-
-#. module: s6r_crm_sharing
-#. odoo-python
-#: code:addons/s6r-odoo-addons-crm/s6r_crm_sharing/controllers/portal.py:0
-#: code:addons/s6r_crm_sharing/controllers/portal.py:0
-#, python-format
-msgid "Stage"
-msgstr "Étape"
-
-#. module: s6r_crm_sharing
-#. odoo-python
-#: code:addons/s6r-odoo-addons-crm/s6r_crm_sharing/controllers/portal.py:0
-#: code:addons/s6r_crm_sharing/controllers/portal.py:0
-#, python-format
-msgid "This Week Activities"
-msgstr "Activités de la semaine"
-
-#. module: s6r_crm_sharing
-#. odoo-python
-#: code:addons/s6r-odoo-addons-crm/s6r_crm_sharing/controllers/portal.py:0
-#: code:addons/s6r_crm_sharing/controllers/portal.py:0
-#, python-format
-msgid "Today Activities"
-msgstr "Activités d'aujourd'hui"
-
-#. module: s6r_crm_sharing
-#. odoo-python
-#: code:addons/s6r-odoo-addons-crm/s6r_crm_sharing/controllers/portal.py:0
-#: code:addons/s6r_crm_sharing/controllers/portal.py:0
-#, python-format
-msgid "Won"
-msgstr "Gagné"
-
-#. module: s6r_crm_sharing
-#. odoo-python
 #: code:addons/s6r-odoo-addons-crm/s6r_crm_sharing/models/crm_lead.py:0
 #: code:addons/s6r_crm_sharing/models/crm_lead.py:0
-#, python-format
 msgid "You cannot write on %s fields in lead."
 msgstr "Vous ne pouvez pas écrire sur les champs %s de la piste."
 
