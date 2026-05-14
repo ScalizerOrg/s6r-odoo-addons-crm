@@ -40,6 +40,8 @@ class CrmSharingPortal(WebsiteAccount):
         )
         return session_info
 
+    # auth="user" is sufficient: no lead ID in URL; data access goes through the OWL SPA
+    # which calls standard JSON-RPC routes protected by ORM record rules.
     @http.route(['/my/opportunities', '/my/opportunities/page/<int:page>'], type='http', auth="user", website=True)
     def portal_my_opportunities(self, page=1, date_begin=None, date_end=None, sortby=None, filterby=None, **kw):
         return request.redirect('/my/opportunities/crm_sharing')

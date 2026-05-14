@@ -9,7 +9,7 @@ from odoo.exceptions import AccessError
 
 _logger = logging.getLogger(__name__)
 
-CRM_LEAD_READABLE_FIELDS = {
+CRM_LEAD_READABLE_FIELDS = frozenset({
     'message_follower_ids',
     'access_token',
     'active',
@@ -35,9 +35,10 @@ CRM_LEAD_READABLE_FIELDS = {
     'type',
     'user_id',
     'user_company_ids',
-}
+})
 
-SELF_WRITABLE_FIELDS = {
+# Adding a field here is the only safe way to extend portal write access — intentional allowlist.
+SELF_WRITABLE_FIELDS = frozenset({
     'message_follower_ids',
     'description',
     'email_from',
@@ -51,7 +52,7 @@ SELF_WRITABLE_FIELDS = {
     'tag_ids',
     'user_id',
     'team_id',
-}
+})
 
 class CrmLead(models.Model):
     _inherit = 'crm.lead'
